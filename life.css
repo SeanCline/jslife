@@ -1,0 +1,21 @@
+* {
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+h2, h3 {
+  padding-top: 1.5em;
+}
+
+.patternselect {
+  margin: 5px;
+  float: left;
+  text-align: center;
+}
+
+.patternselect img {
+  display: block;
+}
+
+.patterntype {
+  clear: both;
+}

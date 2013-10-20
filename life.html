@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head>
+  <title>Conway's Game of Life</title>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+  <link rel="stylesheet" href="life.css" type="text/css">
+  <script type="text/javascript" src="lifeDemos.js"></script>
+  <script type="text/javascript" src="lifeEngine.js"></script>
+  <script type="text/javascript">
+	var life;
+	window.onload = function() { life = new lifeEngine('lifecanv', 100, 100); }
+	
+	changeSpeed = function() {
+		var sel = document.getElementById('speed');
+		life.stop();
+		life.start(sel.options[sel.selectedIndex].value);
+	}
+	
+	changeSize = function() {
+		var sel = document.getElementById('size');
+		var dem = sel.options[sel.selectedIndex].value;
+		life.currentGrid.resize(dem, dem);
+	}
+  </script>
+
+</head>
+<body>
+<h1>Conway's Game of Life</h1>
+
+<button title="Reset the grid to random values." type="button" onclick="life.currentGrid.seed(); life.drawFrame();">Re-seed</button>
+<button title="Reset the grid to all dead cells." type="button" onclick="life.currentGrid.reset(); life.drawFrame();">Reset</button>
+<button title="Start the game again after a pause." type="button" onclick="life.start(); life.drawFrame();">Play</button>
+<button title="Prevent the game from running." type="button" onclick="life.stop(); life.drawFrame();">Pause</button>
+Speed:
+<select name="speed" id="speed" onChange="changeSpeed()">
+<option value="1000">Slow</option>
+<option selected value="100">Normal</option>
+<option value="50">Fast</option>
+<option value="32">Insane</option>
+</select> 
+Size:
+<select name="size" id="size" onChange="changeSize()">
+<option value="50">50x50</option>
+<option selected value="100">100x100</option>
+<option value="250">250x250</option>
+<option value="500">500x500</option>
+</select> 
+<br>
+<canvas id="lifecanv" width="500" height="500">
+	<p>
+		Your web browser does not support the CANVAS tag.
+		Try updating your browser or using a recent version of: 
+		<a href="http://www.firefox.com">Firefox</a>,
+		<a href="http://www.google.com/chrome/">Chrome</a>,
+		or <a href="http://www.opera.com">Opera</a>
+	</p>
+</canvas>
+
+<h2>Patterns</h2>
+<p>
+With life's simple set of rules patterns emerge. Click on a pattern image to see it in action on the game board.
+</p>
+
+<h3 class="patterntype">Still lifes</h3>
+<p>These shapes are completely "stable" and do not change from generation to generation. This makes them not very exciting on a game board. :p</p>
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.block);">
+<img src="images/block.png"></a>Block</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.beehive);">
+<img src="images/beehive.png"></a>Behive</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.loaf);">
+<img src="images/loaf.png"></a>Loaf</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.boat);">
+<img src="images/boat.png"></a>Boat</div>
+
+
+<h3 class="patterntype">Oscillators</h3>
+<p>These patterns change through 2 or more states, eventually returning to their original state.</p>
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.blinker);">
+<img src="images/blinker.png"></a>Blinker</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.toad);">
+<img src="images/toad.png"></a>Toad</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.beacon);">
+<img src="images/beacon.png"></a>Beacon</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.pulsar);">
+<img src="images/pulsar.png"></a>Pulsar</div>
+
+
+<h3 class="patterntype">Ships</h3>
+<p>These patterns loop much like an oscillator with the exception that when returning to the original state, they have translated themselves over 1 or more units.</p>
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.glider);">
+<img src="images/glider.png"></a>Glider</div>   
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.lwss);">
+<img src="images/lwss.png"></a>Lightweight Spaceship</div>
+
+
+<h3 class="patterntype">Methuselahs</h3>
+<p>The's patterns take many generations to stablize.</p>
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.diehard);">
+<img src="images/diehard.png"></a>Diehard</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.acorn);">
+<img src="images/acorn.png"></a>Acorn</div>
+
+<div class="patternselect"><a href="#" onclick="life.currentGrid.loadDemo(lifeDemos.gosper);">
+<img src="images/gosper.png"></a>Gosper</div>
+
+</body>
+</html>

@@ -1,4 +1,10 @@
-jslife
-======
+Conway's Game of Life in Javascript
+===================================
 
-An old demo of the HTML5 canvas element using Conway's Game of Life
+I threw this together several years ago to test out the new (at the time) HTML5 2D canvas.
+
+It supports changing game speed, seeding with random data, interaction with mouse, and loading demos of some common sprites.
+
+### [Live Demo](https://github.com/SeanCline/jslife/raw/master/index.html)
+
+The web has changed quite a bit since I put this demo together. Sometime, I'd like to speed it up using WebGL (3D canvas) for drawing and typed arrays for grid computation. Or, if feeling really adventurous, maybe a pixel shader for computation as well.
